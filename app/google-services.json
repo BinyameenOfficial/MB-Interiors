@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "578901440999",
+    "firebase_url": "https://mb-interiors.firebaseio.com",
+    "project_id": "mb-interiors",
+    "storage_bucket": "mb-interiors.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:578901440999:android:84306e6225ca6977796542",
+        "android_client_info": {
+          "package_name": "com.blogspot.happyclub896.mbinteriors"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "578901440999-srv7j11entdgp6fv7jb2ao74eglg47ai.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5tM_kkaqZV4uKTvUb7IZ9HzTxamTah78"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "578901440999-srv7j11entdgp6fv7jb2ao74eglg47ai.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
