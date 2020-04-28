@@ -20,11 +20,11 @@ import java.util.List;
  */
 public class MyCartFragment extends Fragment {
 
-    private RecyclerView cartItemsRecyclerView;
     public MyCartFragment() {
         // Required empty public constructor
     }
 
+    private RecyclerView cartItemsRecyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,8 +34,7 @@ public class MyCartFragment extends Fragment {
         cartItemsRecyclerView=view.findViewById(R.id.cart_items_recyclerview);
 
         LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
-
-        layoutManager.setOrientation(RecyclerView.VERTICAL);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         cartItemsRecyclerView.setLayoutManager(layoutManager);
 
         List<CartItemModel> cartItemModelList=new ArrayList<>();
@@ -43,13 +42,11 @@ public class MyCartFragment extends Fragment {
         cartItemModelList.add(new CartItemModel(0,R.mipmap.image,"Pixel 2",2,"Rs.49999/-","Rs.59999/-",1,0,0));
         cartItemModelList.add(new CartItemModel(0,R.mipmap.image,"Pixel 2",0,"Rs.49999/-","Rs.59999/-",1,1,0));
         cartItemModelList.add(new CartItemModel(0,R.mipmap.image,"Pixel 2",2,"Rs.49999/-","Rs.59999/-",1,2,0));
-
         cartItemModelList.add(new CartItemModel(1,"Price (3 items)","Rs.169999/-","free","Rs.169999/-","Rs.59999/-"));
 
         CartAdapter cartAdapter=new CartAdapter(cartItemModelList);
         cartItemsRecyclerView.setAdapter(cartAdapter);
         cartAdapter.notifyDataSetChanged();
-
         return  view;
     }
 

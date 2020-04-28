@@ -42,7 +42,7 @@ public class CartAdapter extends RecyclerView.Adapter {
                 return new CartItemViewholder(cartItemView);
             case CartItemModel.TOTAL_AMOUNT:
                 View cartTotalView= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cart_total_amout_layout,viewGroup,false);
-                return new CartItemViewholder(cartTotalView);
+                return new CartTotalAmountViewholder(cartTotalView);
             default:
                 return null;
         }
@@ -70,7 +70,6 @@ public class CartAdapter extends RecyclerView.Adapter {
 
                 ((CartTotalAmountViewholder)viewHolder).setTotalAmount(totalItems,totalItemsPrice,deliveryPrice,totalAmount,savedAmount);
                 break;
-
              default:
                  return;
 
@@ -83,6 +82,7 @@ public class CartAdapter extends RecyclerView.Adapter {
     }
 
     class CartItemViewholder extends RecyclerView.ViewHolder{
+
         private ImageView productImage;
         private ImageView freeCoupanIcon;
         private TextView productTitle;
@@ -105,16 +105,16 @@ public class CartAdapter extends RecyclerView.Adapter {
             coupansApplied=itemView.findViewById(R.id.coupans_applied);
             productQuantity=itemView.findViewById(R.id.product_quantity);
         }
-        private void setItemDetail(int resource,String title,int freeCoupanNumber,String productPriceText,String cuttedPriceText,int offersAppliedNumber){
+        private void setItemDetail(int resource,String title,int freeCoupansNo,String productPriceText,String cuttedPriceText,int offersAppliedNo){
             productImage.setImageResource(resource);
             productTitle.setText(title);
-            if(freeCoupanNumber>0){
+            if(freeCoupansNo>0){
                 freeCoupanIcon.setVisibility(View.VISIBLE);
                 freeCoupans.setVisibility(View.VISIBLE);
-                if (freeCoupanNumber==1){
-                    freeCoupans.setText("free "+freeCoupanNumber+" coupan");
+                if (freeCoupansNo==1){
+                    freeCoupans.setText("free "+freeCoupansNo+" coupan");
                 }else{
-                    freeCoupans.setText("free "+freeCoupanNumber+" coupans");
+                    freeCoupans.setText("free "+freeCoupansNo+" coupans");
                 }
             }else {
                 freeCoupanIcon.setVisibility(View.INVISIBLE);
@@ -122,9 +122,9 @@ public class CartAdapter extends RecyclerView.Adapter {
             }
             productPrice.setText(productPriceText);
             cuttedPrice.setText(cuttedPriceText);
-            if(offersAppliedNumber>0){
+            if(offersAppliedNo>0){
                 offersApplied.setVisibility(View.VISIBLE);
-                offersApplied.setText(offersAppliedNumber+" offers Applied");
+                offersApplied.setText(offersAppliedNo+" offers Applied");
             }else{
                 offersApplied.setVisibility(View.INVISIBLE);
             }
@@ -133,21 +133,22 @@ public class CartAdapter extends RecyclerView.Adapter {
 
     class CartTotalAmountViewholder extends RecyclerView.ViewHolder{
         private TextView totalItems;
-        private TextView totalPrice;
+        private TextView totalItemPrice;
         private TextView deliveryPrice;
         private TextView totalAmount;
         private TextView savedAmount;
         public CartTotalAmountViewholder(@NonNull View itemView) {
             super(itemView);
             totalItems=itemView.findViewById(R.id.total_items);
-            totalPrice=itemView.findViewById(R.id.total_price);
+            totalItemPrice=itemView.findViewById(R.id.total_items_price);
             deliveryPrice=itemView.findViewById(R.id.delivery_price);
-            totalAmount=itemView.findViewById(R.id.total_cart_amount);
+            totalAmount=itemView.findViewById(R.id.total_price);
             savedAmount=itemView.findViewById(R.id.saved_amount);
         }
-        private void setTotalAmount(String totalItemNo,String totalItemPricetext,String deliveryPriceText,String totalAmountText,String savedAmountText ){
-            totalItems.setText(totalItemNo);
-            totalPrice.setText(totalItemPricetext);
+
+        private void setTotalAmount(String totalItemText,String totalItemPricetext,String deliveryPriceText,String totalAmountText,String savedAmountText ){
+            totalItems.setText(totalItemText);
+            totalItemPrice.setText(totalItemPricetext);
             deliveryPrice.setText(deliveryPriceText);
             totalAmount.setText(totalAmountText);
             savedAmount.setText(savedAmountText);

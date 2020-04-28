@@ -2,7 +2,7 @@ package com.blogspot.happyclub896.mbinteriors;
 
 public class CartItemModel {
     public  static  final int CART_ITEM=0;
-    public static final int TOTAL_AMOUNT=1;
+    public  static final int TOTAL_AMOUNT=1;
 
     private int type;
 
@@ -15,15 +15,14 @@ public class CartItemModel {
     }
 
 ///////////// cart item
-
     private int productImage;
     private String productTitle;
-    private  int freeCoupans;
+    private int freeCoupans;
     private String productPrice;
     private String cuttedPrice;
-    private  int productQuantity;
+    private int productQuantity;
     private int offersApplied;
-    private  int coupansApplied;
+    private int coupansApplied;
 
     public CartItemModel(int type, int productImage, String productTitle, int freeCoupans, String productPrice, String cuttedPrice, int productQuantity, int offersApplied, int coupansApplied) {
         this.type = type;
@@ -109,7 +108,7 @@ public class CartItemModel {
     private String savedAmount;
     private String totalAmount;
 
-    public CartItemModel(int type, String  totalItems, String totalItemPrice, String deliveryPrice, String savedAmount, String totalAmount) {
+    public CartItemModel(int type, String  totalItems, String totalItemPrice, String deliveryPrice, String totalAmount, String savedAmount) {
         this.type = type;
         this.totalItems = totalItems;
         this.totalItemPrice = totalItemPrice;

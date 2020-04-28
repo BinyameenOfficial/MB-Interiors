@@ -5,6 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
     android:background="@color/colorAccent"
     android:elevation="3dp">
 
@@ -34,9 +36,11 @@
         android:id="@+id/free_coupan_icon"
         android:layout_width="15dp"
         android:layout_height="15dp"
+        android:layout_marginTop="2dp"
         android:tint="@color/successGreen"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_free_coupan"
         app:layout_constraintStart_toStartOf="@+id/product_title"
-        app:layout_constraintTop_toBottomOf="@+id/product_title"
+        app:layout_constraintTop_toTopOf="@+id/tv_free_coupan"
         app:srcCompat="@mipmap/coupen" />
 
     <TextView
@@ -44,8 +48,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Free 2 Coupans"
-        android:textSize="12sp"
         android:textColor="#8000ff"
+        android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/free_coupan_icon"
         app:layout_constraintTop_toBottomOf="@+id/product_title" />
 
@@ -66,7 +70,9 @@
         android:id="@+id/cutted_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
         android:text="Rs.59999/-"
+        android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/product_price"
         app:layout_constraintEnd_toStartOf="@+id/product_price" />
 
@@ -95,6 +101,7 @@
         android:id="@+id/coupans_applied"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:text="Coupans Applied"
         android:textColor="@color/colorPrimary"
         android:textSize="12sp"
@@ -107,6 +114,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Qty:1"
+        android:textColor="#000000"
         android:background="@drawable/border_background"
         android:backgroundTint="#000000"
         android:padding="3dp"
@@ -151,8 +159,8 @@
         android:id="@+id/remove_item_btn"
         android:layout_width="0dp"
         android:layout_height="56dp"
-        android:background="@color/colorAccent"
         android:orientation="horizontal"
+        android:background="@color/colorAccent"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
