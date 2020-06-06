@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity
 
     private static final int HOME_FRAGMENT=0;
     private static final int CART_FRAGMENT=1;
+    private static final int ORDERS_FRAGMENT=2;
+
 
     private FrameLayout frameLayout;
     private ImageView actionBarLogo;
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.getMenu().getItem(0).setChecked(true);
 
         frameLayout=findViewById(R.id.main_framelayout);
-        setFragment(new HomeFragment(),HOME_FRAGMENT);
+        setFragment(new OrderDetailsFragment(),HOME_FRAGMENT);
 
         /*
         // Passing each menu ID as a set of Ids because each
@@ -117,20 +119,22 @@ public class MainActivity extends AppCompatActivity
             return  true;
         }else if(id==R.id.main_cart_icon){
             //todo: cart
-            myCart();
+            gotoFragment("My Cart",new MyCartFragment(),CART_FRAGMENT);
             return  true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    private void myCart() {
+    private void gotoFragment(String title,Fragment fragment,int fragmentNo) {
         actionBarLogo.setVisibility(View.GONE);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
-        getSupportActionBar().setTitle("My Cart");
+        getSupportActionBar().setTitle(title);
         invalidateOptionsMenu();
-        setFragment(new MyCartFragment(),CART_FRAGMENT);
-        navigationView.getMenu().getItem(3).setChecked(true);
+        setFragment(fragment,fragmentNo);
+        if(fragmentNo==CART_FRAGMENT) {
+            navigationView.getMenu().getItem(3).setChecked(true);
+        }
 
     }
 
@@ -144,11 +148,11 @@ public class MainActivity extends AppCompatActivity
             invalidateOptionsMenu();
             setFragment(new HomeFragment(),HOME_FRAGMENT);
         }else if(id==R.id.nav_my_orders){
-
+            gotoFragment("My Order",new MyOrdersFragment(),ORDERS_FRAGMENT);
         }else if(id==R.id.nav_my_rewards){
 
         }else if (id==R.id.nav_my_cart){
-            myCart();
+            gotoFragment("My Cart",new MyCartFragment(),CART_FRAGMENT);
         }else if (id==R.id.nav_my_wishlist){
 
         }else if (id==R.id.nav_my_account){
