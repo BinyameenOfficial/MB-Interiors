@@ -1,5 +1,6 @@
 package com.blogspot.happyclub896.mbinteriors;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.blogspot.happyclub896.mbinteriors.ui.home.HomeFragment;
@@ -26,6 +27,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
@@ -44,17 +47,22 @@ public class MainActivity extends AppCompatActivity
     private static final int CART_FRAGMENT=1;
     private static final int ORDERS_FRAGMENT=2;
     private static final int WISHLIST_FRAGMENT=3;
+    private static final int REWARDS_FRAGMENT=4;
 
 
     private FrameLayout frameLayout;
     private ImageView actionBarLogo;
     private static int currentFragment= -1;
 
+    private Toolbar toolbar;
+
+    private Window window;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar =(Toolbar) findViewById(R.id.toolbar);
+        toolbar =(Toolbar) findViewById(R.id.toolbar);
         actionBarLogo=findViewById(R.id.actiobar_logo);
         setSupportActionBar(toolbar);
         ///title
@@ -70,6 +78,9 @@ public class MainActivity extends AppCompatActivity
 
         frameLayout=findViewById(R.id.main_framelayout);
         setFragment(new HomeFragment(),HOME_FRAGMENT);
+
+        window=getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
         /*
         // Passing each menu ID as a set of Ids because each
@@ -157,7 +168,7 @@ public class MainActivity extends AppCompatActivity
         }else if(id==R.id.nav_my_orders){
             gotoFragment("My Order",new MyOrdersFragment(),ORDERS_FRAGMENT);
         }else if(id==R.id.nav_my_rewards){
-
+            gotoFragment("My Rewards",new MyRewardsFragment(),REWARDS_FRAGMENT);
         }else if (id==R.id.nav_my_cart){
             gotoFragment("My Cart",new MyCartFragment(),CART_FRAGMENT);
         }else if (id==R.id.nav_my_wishlist){
@@ -186,6 +197,13 @@ public class MainActivity extends AppCompatActivity
 
     private  void setFragment(Fragment fragment,int fragmentNo) {
         if (fragmentNo != currentFragment) {
+            if(fragmentNo==REWARDS_FRAGMENT){
+                window.setStatusBarColor(Color.parseColor("#5B04B1"));
+                toolbar.setBackgroundColor(Color.parseColor("#5B04B1"));
+            }else{
+    //            window.setStatusBarColor(getResources().getColor(R.color.colorPrimary));
+                toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            }
             currentFragment = fragmentNo;
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);

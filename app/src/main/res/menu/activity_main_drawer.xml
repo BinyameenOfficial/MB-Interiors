@@ -28,6 +28,10 @@
             android:id="@+id/nav_my_account"
             android:icon="@mipmap/my_account"
             android:title="My Account" />
+        <item
+            android:id="@+id/nav_design_room"
+            android:icon="@mipmap/home_icon"
+            android:title="Design Your Room" />
     </group>
     <item
         android:id="@+id/nav_sign_out"
