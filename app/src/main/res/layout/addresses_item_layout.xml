@@ -57,21 +57,22 @@
         android:id="@+id/icon_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/check" />
 
     <LinearLayout
+        android:id="@+id/option_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:orientation="vertical"
-        android:elevation="3dp"
-        android:visibility="gone"
         android:background="@color/RecyclerViewBackground"
+        android:elevation="3dp"
+        android:orientation="vertical"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -79,24 +80,24 @@
             android:id="@+id/textView28"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="6dp"
             android:text="Edit"
             android:textAlignment="center"
-            android:textSize="12sp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:paddingTop="6dp"
-            android:paddingBottom="6dp"/>
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/textView29"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="6dp"
             android:text="Remove"
             android:textAlignment="center"
-            android:textSize="12sp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:paddingTop="6dp"
-            android:paddingBottom="6dp"/>
+            android:textSize="12sp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
