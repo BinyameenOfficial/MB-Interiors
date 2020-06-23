@@ -1,5 +1,6 @@
 package com.blogspot.happyclub896.mbinteriors;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -237,6 +238,14 @@ public class HomePageAdapter extends RecyclerView.Adapter {
 
             if(horizontalProductScrollModelList.size()>8){
                 horizontalviewAllBtn.setVisibility(View.VISIBLE);
+                horizontalviewAllBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent viewAllIntent=new Intent(itemView.getContext(),ViewAllActivity.class);
+                        viewAllIntent.putExtra("layout_code",0);
+                        itemView.getContext().startActivity(viewAllIntent);
+                    }
+                });
             }else {
                 horizontalviewAllBtn.setVisibility(View.INVISIBLE);
             }
@@ -266,7 +275,14 @@ public class HomePageAdapter extends RecyclerView.Adapter {
         private  void setGridProductLayout(List<HorizontalProductScrollModel> horizontalProductScrollModelList,String title){
             gridLayoutTitle.setText(title);
             gridView.setAdapter(new GridProductLayoutAdapter(horizontalProductScrollModelList));
-
+            gridLayoutViewAllBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent viewAllIntent=new Intent(itemView.getContext(),ViewAllActivity.class);
+                    viewAllIntent.putExtra("layout_code",1);
+                    itemView.getContext().startActivity(viewAllIntent);
+                }
+            });
         }
     }
 }
