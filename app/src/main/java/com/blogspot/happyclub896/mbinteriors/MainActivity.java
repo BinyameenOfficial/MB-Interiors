@@ -49,11 +49,12 @@ public class MainActivity extends AppCompatActivity
     private static final int WISHLIST_FRAGMENT=3;
     private static final int REWARDS_FRAGMENT=4;
     private static final int ACCOUNT_FRAGMENT=5;
+    public  static Boolean showCart=false;
 
 
     private FrameLayout frameLayout;
     private ImageView actionBarLogo;
-    private static int currentFragment= -1;
+    private  int currentFragment= -1;
 
     private Toolbar toolbar;
 
@@ -69,19 +70,29 @@ public class MainActivity extends AppCompatActivity
         ///title
 
         DrawerLayout drawer =(DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawer,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+
 
         navigationView=(NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
 
         frameLayout=findViewById(R.id.main_framelayout);
-        setFragment(new HomeFragment(),HOME_FRAGMENT);
+        if(showCart){
+            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            gotoFragment("My Cart",new MyCartFragment(),-2);
+        }else {
+            ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawer,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+            drawer.addDrawerListener(toggle);
+            toggle.syncState();
+            setFragment(new HomeFragment(), HOME_FRAGMENT);
 
-        window=getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        }
+
+
+        //this is changed in video 43
+//        window=getWindow();
+//        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
         /*
         // Passing each menu ID as a set of Ids because each
@@ -105,13 +116,20 @@ public class MainActivity extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         }else{
             if(currentFragment==HOME_FRAGMENT) {
+                currentFragment=-1;
                 super.onBackPressed();
+
             }else{
-                actionBarLogo.setVisibility(View.VISIBLE);
-                invalidateOptionsMenu();
-                setFragment(new HomeFragment(),HOME_FRAGMENT);
-                navigationView.getMenu().getItem(0).setChecked(true);
-            }
+                if(showCart){
+                    showCart=false;
+                    finish();
+                }else {
+                    actionBarLogo.setVisibility(View.VISIBLE);
+                    invalidateOptionsMenu();
+                    setFragment(new HomeFragment(), HOME_FRAGMENT);
+                    navigationView.getMenu().getItem(0).setChecked(true);
+                }
+                }
         }
     }
 
@@ -140,6 +158,12 @@ public class MainActivity extends AppCompatActivity
             //todo: cart
             gotoFragment("My Cart",new MyCartFragment(),CART_FRAGMENT);
             return  true;
+        }else if(id==android.R.id.home){
+            if(showCart){
+                showCart=false;
+                finish();
+                return  true;
+            }
         }
 
         return super.onOptionsItemSelected(item);

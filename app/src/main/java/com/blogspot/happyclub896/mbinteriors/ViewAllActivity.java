@@ -53,7 +53,7 @@ public class ViewAllActivity extends AppCompatActivity {
 
 
 
-            WishlistAdapter adapter=new WishlistAdapter(wishlistModelList,true);
+            WishlistAdapter adapter=new WishlistAdapter(wishlistModelList,false);
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
 

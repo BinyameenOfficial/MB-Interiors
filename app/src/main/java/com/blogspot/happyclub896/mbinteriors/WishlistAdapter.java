@@ -19,10 +19,11 @@ public class WishlistAdapter extends RecyclerView.Adapter<WishlistAdapter.Viewho
     private List<WishlistModel> wishlistModelList;
     private Boolean wishlist;
 
-    public WishlistAdapter(List<WishlistModel> wishlistModelList,Boolean wishlist) {
+    public WishlistAdapter(List<WishlistModel> wishlistModelList, Boolean wishlist) {
         this.wishlistModelList = wishlistModelList;
-        this.wishlist=wishlist;
+        this.wishlist = wishlist;
     }
+
 
     @NonNull
     @Override
