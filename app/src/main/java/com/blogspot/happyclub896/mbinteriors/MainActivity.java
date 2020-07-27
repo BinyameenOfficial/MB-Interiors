@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity
                     setFragment(new HomeFragment(), HOME_FRAGMENT);
                     navigationView.getMenu().getItem(0).setChecked(true);
                 }
-                }
+            }
         }
     }
 

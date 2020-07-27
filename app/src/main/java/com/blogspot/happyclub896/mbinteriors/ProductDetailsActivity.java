@@ -21,7 +21,7 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.blogspot.happyclub896.mbinteriors.MainActivity.showCart;
+import static com.blogspot.happyclub896.mbinteriors.MainActivity.*;
 
 public class ProductDetailsActivity extends AppCompatActivity {
 
