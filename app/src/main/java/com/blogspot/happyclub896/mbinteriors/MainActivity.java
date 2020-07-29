@@ -223,7 +223,7 @@ public class MainActivity extends AppCompatActivity
     private  void setFragment(Fragment fragment,int fragmentNo) {
         if (fragmentNo != currentFragment) {
             if(fragmentNo==REWARDS_FRAGMENT){
-                window.setStatusBarColor(Color.parseColor("#5B04B1"));
+//                window.setStatusBarColor(Color.parseColor("#5B04B1"));
                 toolbar.setBackgroundColor(Color.parseColor("#5B04B1"));
             }else{
     //            window.setStatusBarColor(getResources().getColor(R.color.colorPrimary));
