@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -31,11 +32,12 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private static boolean ALREADY_ADDED_TO_WISHLIST=false;
 
 
-    //////// rating ;ayout
+    //////// rating layout
     private LinearLayout rateNowContainer;
     //////// rating ;ayout
 
     private Button buyNowBtn;
+    private  Button viewAr;
 
     private ViewPager productDetailsViewPager;
     private TabLayout productDetailsTabLayout;
@@ -123,6 +125,19 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 startActivity(deliveryIntent);
             }
         });
+
+        ////////Download 3D MOdel using product name
+        viewAr=findViewById(R.id.viewAr);
+        viewAr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent arModelIntent=new Intent(ProductDetailsActivity.this,ProductArObject.class);
+                startActivity(arModelIntent);
+            }
+        });
+
+
+        ////////Download 3D MOdel using product name
 
     }
 

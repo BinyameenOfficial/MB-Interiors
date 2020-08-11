@@ -69,8 +69,7 @@ public class HomeFragment extends Fragment {
         categoryModelList.add(new CategoryModel("link","Toys"));
         categoryModelList.add(new CategoryModel("link","Sports"));
         categoryModelList.add(new CategoryModel("link","Wall Arts"));
-        categoryModelList.add(new CategoryModel("link","Books"));
-        categoryModelList.add(new CategoryModel("link","Shoes"));
+
 
         categoryAdapter=new CategoryAdapter(categoryModelList);
         categoryRecyclerView.setAdapter(categoryAdapter);

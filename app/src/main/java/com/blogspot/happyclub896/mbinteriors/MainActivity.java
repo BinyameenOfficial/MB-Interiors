@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity
     private static final int WISHLIST_FRAGMENT=3;
     private static final int REWARDS_FRAGMENT=4;
     private static final int ACCOUNT_FRAGMENT=5;
+    private static final int ROOM_DESIGN=6;
     public  static Boolean showCart=false;
 
 
@@ -200,7 +201,10 @@ public class MainActivity extends AppCompatActivity
             gotoFragment("My WishList",new MyWishListFragment(),WISHLIST_FRAGMENT);
         }else if (id==R.id.nav_my_account){
             gotoFragment("My Account",new MyAccountFragment(),ACCOUNT_FRAGMENT);
-        } else if(id==R.id.nav_sign_out){
+        }else if(id==R.id.nav_design_room){
+            gotoFragment("Design Your Room",new RoomDesignFragment(),ROOM_DESIGN);
+        }
+        else if(id==R.id.nav_sign_out){
 
         }
 
@@ -223,7 +227,7 @@ public class MainActivity extends AppCompatActivity
     private  void setFragment(Fragment fragment,int fragmentNo) {
         if (fragmentNo != currentFragment) {
             if(fragmentNo==REWARDS_FRAGMENT){
-//                window.setStatusBarColor(Color.parseColor("#5B04B1"));
+    //            window.setStatusBarColor(Color.parseColor("#5B04B1"));
                 toolbar.setBackgroundColor(Color.parseColor("#5B04B1"));
             }else{
     //            window.setStatusBarColor(getResources().getColor(R.color.colorPrimary));
