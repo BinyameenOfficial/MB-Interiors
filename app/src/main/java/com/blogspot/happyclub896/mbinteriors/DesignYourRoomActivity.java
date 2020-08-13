@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.ar.core.Anchor;
 import com.google.ar.core.HitResult;
 import com.google.ar.core.Plane;
 import com.google.ar.sceneform.AnchorNode;
+import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.rendering.ViewRenderable;
 import com.google.ar.sceneform.ux.ArFragment;
@@ -24,18 +26,18 @@ public class DesignYourRoomActivity extends AppCompatActivity implements View.On
     ArFragment arFragment;
 
     private ModelRenderable bedRenderable,
-                            clockRenderable,
                             drawerRenderable,
-                            flatScreenTvRenderable,
                             roundTableRenderable,
                             singleSofaRenderable,
                             sofaRenderable,
                             stoolRenderable,
                             tableRenderable,
+                            flatScreenTvRenderable,
+                            clockRenderable,
                             toiletRenderable;
     ImageView bed,clock,drawer,flatScreenTv,roundTable,singleSofa,sofa,stool,table,toilet;
     View arrayView[];
-    ViewRenderable name_product;
+
 
     int selected=1; //default bed is choosed
 
@@ -48,14 +50,14 @@ public class DesignYourRoomActivity extends AppCompatActivity implements View.On
 
         ///View
         bed=(ImageView)findViewById(R.id.bed);
-        clock=(ImageView)findViewById(R.id.clock);
         drawer=(ImageView)findViewById(R.id.drawer);
-        flatScreenTv=(ImageView)findViewById(R.id.flat_screen_tv);
         roundTable=(ImageView)findViewById(R.id.round_table);
         singleSofa=(ImageView)findViewById(R.id.singlesofa);
         sofa=(ImageView)findViewById(R.id.sofa);
         stool=(ImageView)findViewById(R.id.stool);
         table=(ImageView)findViewById(R.id.table);
+        flatScreenTv=(ImageView)findViewById(R.id.flat_screen_tv);
+        clock=(ImageView)findViewById(R.id.clock);
         toilet=(ImageView)findViewById(R.id.toilet);
 
         setArrayView();
@@ -66,12 +68,10 @@ public class DesignYourRoomActivity extends AppCompatActivity implements View.On
         arFragment=(ArFragment)getSupportFragmentManager().findFragmentById(R.id.sceneform_ux_fragment);
         arFragment.setOnTapArPlaneListener((hitResult, plane, motionEvent) -> {
              //where user tap on plane we will add model
-            if(selected==1){
                 Anchor anchor=hitResult.createAnchor();
                 AnchorNode anchorNode=new AnchorNode(anchor);
                 anchorNode.setParent(arFragment.getArSceneView().getScene());
                 createModel(anchorNode,selected);
-            }
         });
     }
 
@@ -84,64 +84,65 @@ public class DesignYourRoomActivity extends AppCompatActivity implements View.On
                     return null;
                 });
         ModelRenderable.builder()
-                .setSource(this,R.raw.clock)
-                .build().thenAccept(renderable -> bedRenderable=renderable)
-                .exceptionally(throwable -> {
-                    Toast.makeText(this,"Unable to load Clock Model",Toast.LENGTH_LONG).show();
-                    return null;
-                });
-        ModelRenderable.builder()
                 .setSource(this,R.raw.drawer)
-                .build().thenAccept(renderable -> bedRenderable=renderable)
+                .build().thenAccept(renderable -> drawerRenderable=renderable)
                 .exceptionally(throwable -> {
                     Toast.makeText(this,"Unable to load Drawer Model",Toast.LENGTH_LONG).show();
                     return null;
                 });
         ModelRenderable.builder()
-                .setSource(this,R.raw.flat_screen_tv)
-                .build().thenAccept(renderable -> bedRenderable=renderable)
-                .exceptionally(throwable -> {
-                    Toast.makeText(this,"Unable to load Flat Screen Television Model",Toast.LENGTH_LONG).show();
-                    return null;
-                });
-        ModelRenderable.builder()
                 .setSource(this,R.raw.round_table)
-                .build().thenAccept(renderable -> bedRenderable=renderable)
+                .build().thenAccept(renderable -> roundTableRenderable=renderable)
                 .exceptionally(throwable -> {
                     Toast.makeText(this,"Unable to load Round Table Model",Toast.LENGTH_LONG).show();
                     return null;
                 });
         ModelRenderable.builder()
                 .setSource(this,R.raw.singlesofa)
-                .build().thenAccept(renderable -> bedRenderable=renderable)
+                .build().thenAccept(renderable -> singleSofaRenderable=renderable)
                 .exceptionally(throwable -> {
                     Toast.makeText(this,"Unable to load Single Seat Sofa Model",Toast.LENGTH_LONG).show();
                     return null;
                 });
         ModelRenderable.builder()
                 .setSource(this,R.raw.sofa)
-                .build().thenAccept(renderable -> bedRenderable=renderable)
+                .build().thenAccept(renderable -> sofaRenderable=renderable)
                 .exceptionally(throwable -> {
                     Toast.makeText(this,"Unable to load Sofa Model",Toast.LENGTH_LONG).show();
                     return null;
                 });
         ModelRenderable.builder()
                 .setSource(this,R.raw.stool)
-                .build().thenAccept(renderable -> bedRenderable=renderable)
+                .build().thenAccept(renderable -> stoolRenderable=renderable)
                 .exceptionally(throwable -> {
                     Toast.makeText(this,"Unable to load Stool Model",Toast.LENGTH_LONG).show();
                     return null;
                 });
         ModelRenderable.builder()
                 .setSource(this,R.raw.table)
-                .build().thenAccept(renderable -> bedRenderable=renderable)
+                .build().thenAccept(renderable -> tableRenderable=renderable)
                 .exceptionally(throwable -> {
                     Toast.makeText(this,"Unable to load Table Model",Toast.LENGTH_LONG).show();
                     return null;
                 });
         ModelRenderable.builder()
+                .setSource(this,R.raw.flat_screen_tv)
+                .build().thenAccept(renderable -> flatScreenTvRenderable=renderable)
+                .exceptionally(throwable -> {
+                    Toast.makeText(this,"Unable to load Flat Screen Television Model",Toast.LENGTH_LONG).show();
+                    return null;
+                });
+        ModelRenderable.builder()
+                .setSource(this,R.raw.clock)
+                .build().thenAccept(renderable -> clockRenderable=renderable)
+                .exceptionally(throwable -> {
+                    Toast.makeText(this,"Unable to load Clock Model",Toast.LENGTH_LONG).show();
+                    return null;
+                });
+
+        ModelRenderable.builder()
                 .setSource(this,R.raw.toilet)
-                .build().thenAccept(renderable -> bedRenderable=renderable)
+                .build().thenAccept(renderable -> toiletRenderable=renderable)
                 .exceptionally(throwable -> {
                     Toast.makeText(this,"Unable to load Toilet Model",Toast.LENGTH_LONG).show();
                     return null;
@@ -154,8 +155,101 @@ public class DesignYourRoomActivity extends AppCompatActivity implements View.On
             bed.setParent(anchorNode);
             bed.setRenderable(bedRenderable);
             bed.select();
+            
+            addName(anchorNode,bed,"Bed");
+        }else if(selected==2){
+            TransformableNode bed=new TransformableNode(arFragment.getTransformationSystem());
+            bed.setParent(anchorNode);
+            bed.setRenderable(drawerRenderable);
+            bed.select();
+
+            addName(anchorNode,bed,"Drawer");
+        }else if(selected==3){
+            TransformableNode bed=new TransformableNode(arFragment.getTransformationSystem());
+            bed.setParent(anchorNode);
+            bed.setRenderable(roundTableRenderable);
+            bed.select();
+
+            addName(anchorNode,bed,"Round  Table");
+        }else if(selected==4){
+            TransformableNode bed=new TransformableNode(arFragment.getTransformationSystem());
+            bed.setParent(anchorNode);
+            bed.setRenderable(singleSofaRenderable);
+            bed.select();
+
+            addName(anchorNode,bed,"Single Sofa");
+        }else if(selected==5){
+            TransformableNode bed=new TransformableNode(arFragment.getTransformationSystem());
+            bed.setParent(anchorNode);
+            bed.setRenderable(sofaRenderable);
+            bed.select();
+
+            addName(anchorNode,bed,"Sofa");
+        }else if(selected==6){
+            TransformableNode bed=new TransformableNode(arFragment.getTransformationSystem());
+            bed.setParent(anchorNode);
+            bed.setRenderable(stoolRenderable);
+            bed.select();
+
+            addName(anchorNode,bed,"Stool");
+        }else if(selected==7){
+            TransformableNode bed=new TransformableNode(arFragment.getTransformationSystem());
+            bed.setParent(anchorNode);
+            bed.setRenderable(tableRenderable);
+            bed.select();
+
+            addName(anchorNode,bed,"Table");
+        }else if(selected==8){
+            TransformableNode bed=new TransformableNode(arFragment.getTransformationSystem());
+            bed.setParent(anchorNode);
+            bed.setRenderable(flatScreenTvRenderable);
+            bed.select();
+
+            addName(anchorNode,bed,"Flat Screen TV");
+        }else if(selected==9){
+            TransformableNode bed=new TransformableNode(arFragment.getTransformationSystem());
+            bed.setParent(anchorNode);
+            bed.setRenderable(clockRenderable);
+            bed.select();
+
+            addName(anchorNode,bed,"Clock");
+        }else if(selected==10){
+            TransformableNode bed=new TransformableNode(arFragment.getTransformationSystem());
+            bed.setParent(anchorNode);
+            bed.setRenderable(toiletRenderable);
+            bed.select();
+
+            addName(anchorNode,bed,"Toilet");
         }
     }
+
+    private void addName(AnchorNode anchorNode, TransformableNode model, String name) {
+
+        ///each model we will create name
+        ViewRenderable.builder().setView(this,R.layout.name_model)
+                .build()
+                .thenAccept(viewRenderable -> {
+                    TransformableNode nameView=new TransformableNode(arFragment.getTransformationSystem());
+                    nameView.setLocalPosition(new Vector3(0f,model.getLocalPosition().y+0.5f,0));
+                    nameView.setParent(anchorNode);
+                    nameView.setRenderable(viewRenderable);
+                    nameView.select();
+
+
+                    /////SET TEXT
+                    TextView text_name=(TextView) viewRenderable.getView();
+                    text_name.setText(name);
+                    /////click to textview to remove animal
+                    text_name.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            anchorNode.setParent(null);
+                        }
+                    });
+
+                });
+
+            }
 
     private void setClickListner() {
         for(int i=0;i<arrayView.length;i++){
@@ -165,7 +259,7 @@ public class DesignYourRoomActivity extends AppCompatActivity implements View.On
 
     private void setArrayView() {
         arrayView=new View[]{
-                bed,clock,drawer,flatScreenTv,roundTable,singleSofa,sofa,stool,table,toilet
+                bed,drawer,roundTable,singleSofa,sofa,stool,table,flatScreenTv,clock,toilet
         };
     }
 
